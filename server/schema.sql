@@ -1,5 +1,11 @@
+-----------------------------------
+----------DATABASE SCHEMA----------
+-----------------------------------
 
 
+-------------------
+---Product Table---
+-------------------
 DROP TABLE IF EXISTS product CASCADE;
 
 CREATE TABLE IF NOT EXISTS product (
@@ -11,6 +17,10 @@ CREATE TABLE IF NOT EXISTS product (
   default_price VARCHAR(100) NOT NULL
 );
 
+
+--------------------
+---Features Table---
+--------------------
 DROP TABLE IF EXISTS features CASCADE;
 
 CREATE TABLE IF NOT EXISTS features (
@@ -20,6 +30,10 @@ CREATE TABLE IF NOT EXISTS features (
   value VARCHAR(100) NOT NULL
 );
 
+
+-------------------
+----Style Table----
+-------------------
 DROP TABLE IF EXISTS style CASCADE;
 
 CREATE TABLE IF NOT EXISTS style (
@@ -31,6 +45,10 @@ CREATE TABLE IF NOT EXISTS style (
   default_style BOOLEAN NOT NULL
 );
 
+
+-------------------
+---Related Table---
+-------------------
 DROP TABLE IF EXISTS related CASCADE;
 
 CREATE TABLE IF NOT EXISTS related (
@@ -39,6 +57,10 @@ CREATE TABLE IF NOT EXISTS related (
   related_product_id INT NOT NULL
 );
 
+
+--------------------
+-----Skus Table-----
+--------------------
 DROP TABLE IF EXISTS skus CASCADE;
 
 CREATE TABLE IF NOT EXISTS skus (
@@ -48,6 +70,10 @@ CREATE TABLE IF NOT EXISTS skus (
   quantity INT NOT NULL
 );
 
+
+--------------------
+----Photos Table----
+--------------------
 DROP TABLE IF EXISTS photos CASCADE;
 
 CREATE TABLE IF NOT EXISTS photos (
