@@ -34,9 +34,9 @@ CREATE TABLE IF NOT EXISTS features (
 -------------------
 ----Style Table----
 -------------------
-DROP TABLE IF EXISTS style CASCADE;
+DROP TABLE IF EXISTS styles CASCADE;
 
-CREATE TABLE IF NOT EXISTS style (
+CREATE TABLE IF NOT EXISTS styles (
   id INT UNIQUE NOT NULL PRIMARY KEY,
   product_id INT NOT NULL REFERENCES product(id),
   name VARCHAR(100) NOT NULL,
@@ -65,7 +65,7 @@ DROP TABLE IF EXISTS skus CASCADE;
 
 CREATE TABLE IF NOT EXISTS skus (
   id INT UNIQUE NOT NULL PRIMARY KEY,
-  style_id INT NOT NULL REFERENCES style(id),
+  style_id INT NOT NULL REFERENCES styles(id),
   size VARCHAR(10) NOT NULL,
   quantity INT NOT NULL
 );
@@ -78,7 +78,45 @@ DROP TABLE IF EXISTS photos CASCADE;
 
 CREATE TABLE IF NOT EXISTS photos (
   id INT UNIQUE NOT NULL PRIMARY KEY,
-  style_id INT NOT NULL REFERENCES style(id),
+  style_id INT NOT NULL REFERENCES styles(id),
   url TEXT NOT NULL,
   thumbnail_url TEXT NOT NULL
 );
+
+
+
+------------------------------------------
+------------- COPY COMMANDS --------------
+------------------------------------------
+
+-- COPY product(id, name, slogan, description, category,default_price)
+-- FROM '/Users/benpak/Downloads/product.csv'
+-- DELIMITER ','
+-- CSV HEADER;
+
+-- COPY styles (id, product_id, name, sale_price, original_price, default_style)
+-- FROM '/Users/benpak/Downloads/styles.csv'
+-- DELIMITER ','
+-- CSV HEADER;
+
+-- COPY features(id, product_id, feature, value)
+-- FROM '/Users/benpak/Downloads/features.csv'
+-- DELIMITER ','
+-- CSV HEADER;
+
+-- COPY related(id, current_product_id, related_product_id)
+-- FROM '/Users/benpak/Downloads/related.csv'
+-- DELIMITER ','
+-- CSV HEADER;
+
+-- COPY photos(id, style_id, url, thumbnail_url)
+-- FROM '/Users/benpak/Downloads/photos.csv'
+-- DELIMITER ','
+-- CSV HEADER;
+
+-- COPY skus(id, style_id, size, quantity)
+-- FROM '/Users/benpak/Downloads/skus.csv'
+-- DELIMITER ','
+-- CSV HEADER;
+
+
