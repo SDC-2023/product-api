@@ -1,7 +1,8 @@
 require('dotenv').config();
 const express = require('express');
 const morgan = require('morgan');
-const cors = require('cors')
+const cors = require('cors');
+const db = require('./db');
 
 const app = express();
 
@@ -9,7 +10,6 @@ app.use(morgan('start'));
 app.use(cors());
 app.use(express.json());
 
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`Server is listening at http://localhost:${PORT}`);
+app.listen(process.env.PORT || 3000, () => {
+  console.log(`Listening at http://localhost:${process.env.PORT}`);
 });

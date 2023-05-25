@@ -1,0 +1,10 @@
+require('dotenv').config();
+const { Client } = require('pg');
+const client = new Client(process.env.DB_ENDPOINT);
+const fs = require('fs');
+const csv = require('csv-parser');
+const path = require('path');
+
+client.connect()
+  .then(() => console.log('Successfully connected to the database!'))
+  .catch((err) => console.error('Unable to connect to the database', err));
