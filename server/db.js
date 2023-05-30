@@ -1,9 +1,20 @@
 require('dotenv').config();
-const { Client } = require('pg');
+const { Pool } = require('pg');
 
-const client = new Client(process.env.DB_ENDPOINT);
-client.connect()
-  .then(() => console.log('Successfully connected to the database!'))
-  .catch((err) => console.error('Unable to connect to the database', err));
+const pool = new Pool({
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASS,
+  database: process.env.DB_NAME,
+  port: process.env.DB_PORT
+});
+// pool.connect()
+//   .then(() => console.log('Successfully connected to the database!'))
+//   .catch((err) => console.error('Unable to connect to the database', err));
 
-module.exports = client;
+const closePool = () => {
+  pool.end();
+};
+
+module.exports.pool = pool;
+module.exports.closePool = closePool;
