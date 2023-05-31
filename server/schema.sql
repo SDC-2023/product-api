@@ -29,6 +29,7 @@ CREATE TABLE IF NOT EXISTS features (
   feature VARCHAR(100) NOT NULL,
   value VARCHAR(100) NOT NULL
 );
+CREATE INDEX features_product_id_idx ON features(product_id);
 
 
 -------------------
@@ -44,6 +45,7 @@ CREATE TABLE IF NOT EXISTS styles (
   original_price VARCHAR(100) NOT NULL,
   default_style BOOLEAN NOT NULL
 );
+CREATE INDEX styles_product_id_idx ON styles(product_id);
 
 
 -------------------
@@ -56,6 +58,8 @@ CREATE TABLE IF NOT EXISTS related (
   current_product_id INT NOT NULL REFERENCES product(id),
   related_product_id INT NOT NULL
 );
+CREATE INDEX related_current_product_id_idx ON related(current_product_id);
+CREATE INDEX related_related_product_id_idx ON related(related_product_id);
 
 
 --------------------
@@ -69,6 +73,7 @@ CREATE TABLE IF NOT EXISTS skus (
   size VARCHAR(10) NOT NULL,
   quantity INT NOT NULL
 );
+CREATE INDEX skus_style_id_idx ON skus(style_id);
 
 
 --------------------
@@ -82,7 +87,8 @@ CREATE TABLE IF NOT EXISTS photos (
   url TEXT NOT NULL,
   thumbnail_url TEXT NOT NULL
 );
-
+CREATE INDEX photos_style_id_idx ON photos(style_id);
+CREATE INDEX photos_url_idx ON photos(url);
 
 
 ------------------------------------------
